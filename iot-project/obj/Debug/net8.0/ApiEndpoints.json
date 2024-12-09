@@ -1,5 +1,31 @@
 [
   {
+    "ContainingType": "iot_project.Controllers.IoTController",
+    "Method": "checkCard",
+    "RelativePath": "iot/api/check-card/{IdCard}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdCard",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iot_project.Controllers.IoTController",
+    "Method": "history",
+    "RelativePath": "iot/api/history",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "iot_project.Controllers.AuthController",
     "Method": "login",
     "RelativePath": "iot/api/login",
@@ -26,6 +52,22 @@
       {
         "Name": "dto",
         "Type": "iot_project.DTOs.Authenticate.RegisterDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iot_project.Controllers.IoTController",
+    "Method": "registerUser",
+    "RelativePath": "iot/api/register-user",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "registerUserDTO",
+        "Type": "iot_project.DTOs.IoT.RegisterUserDTO",
         "IsRequired": true
       }
     ],

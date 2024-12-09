@@ -5,8 +5,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
-builder.Services.AddMemoryCache();
+builder.Services.AddControllers();
 
 builder.Services.AddCors(
     options =>
@@ -19,28 +18,21 @@ builder.Services.AddCors(
         });
     }
 );
-builder.Services.AddControllers();
-
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IIdentityCardRepository, IdentityCardRepository>();
+builder.Services.AddScoped<ICheckCardHistoryRepository, CheckCardHistoryRepository>();
 builder.Services.AddScoped<JwtService>();
+builder.Services.AddMemoryCache();
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
 
 app.UseCors();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseRouting();
 app.MapControllers();
 app.UseAuthorization();
 
