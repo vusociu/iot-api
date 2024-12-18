@@ -1,5 +1,6 @@
 using iot_project.Data;
 using iot_project.Helpers;
+using iot_project.Middlewares;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,5 +36,6 @@ app.UseStaticFiles();
 app.UseRouting();
 app.MapControllers();
 app.UseAuthorization();
+app.UseMiddleware<AuthMiddleware>();
 
 app.Run();
