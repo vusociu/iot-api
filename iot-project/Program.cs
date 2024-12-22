@@ -4,8 +4,6 @@ using iot_project.Middlewares;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
 builder.Services.AddControllers();
 
 builder.Services.AddCors(
@@ -27,6 +25,8 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IIdentityCardRepository, IdentityCardRepository>();
 builder.Services.AddScoped<ICheckCardHistoryRepository, CheckCardHistoryRepository>();
 builder.Services.AddScoped<JwtService>();
+builder.Services.AddSingleton<MqttService>(sp =>new MqttService("192.168.1.13", 1883, "vund", "131003"));
+builder.Services.AddHostedService<MqttSubcriberService>();
 builder.Services.AddMemoryCache();
 var app = builder.Build();
 

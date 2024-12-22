@@ -1,22 +1,6 @@
 [
   {
     "ContainingType": "iot_project.Controllers.IoTController",
-    "Method": "checkCard",
-    "RelativePath": "iot/api/check-card/{IdCard}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "IdCard",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "iot_project.Controllers.IoTController",
     "Method": "history",
     "RelativePath": "iot/api/history",
     "HttpMethod": "GET",
@@ -42,6 +26,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "iot_project.Controllers.IoTController",
+    "Method": "openDoor",
+    "RelativePath": "iot/api/open-door",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "iot_project.Controllers.AuthController",
     "Method": "register",
     "RelativePath": "iot/api/register",
@@ -59,7 +53,7 @@
   },
   {
     "ContainingType": "iot_project.Controllers.IoTController",
-    "Method": "registerUser",
+    "Method": "registerUserAsync",
     "RelativePath": "iot/api/register-user",
     "HttpMethod": "POST",
     "IsController": true,

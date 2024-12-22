@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("iot-project")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7cbaaf1f1a7ca5468117e905a567d3b6ef949f78")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+453807c4b3650cbfc6bf1f098805eb7e8a184366")]
 [assembly: System.Reflection.AssemblyProductAttribute("iot-project")]
 [assembly: System.Reflection.AssemblyTitleAttribute("iot-project")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

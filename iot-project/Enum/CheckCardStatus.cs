@@ -3,7 +3,6 @@
     public enum CheckCardStatus
     {
         UN_DEFINED = 0,
-        EXIST = 1,
-        CREATED = 2,
+        EXIST = 1
     }
 }

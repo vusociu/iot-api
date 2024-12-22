@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("065c237a-2c7c-46c1-96ab-4682bf1cfb34")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("iot-project")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7cbaaf1f1a7ca5468117e905a567d3b6ef949f78")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+453807c4b3650cbfc6bf1f098805eb7e8a184366")]
 [assembly: System.Reflection.AssemblyProductAttribute("iot-project")]
 [assembly: System.Reflection.AssemblyTitleAttribute("iot-project")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
