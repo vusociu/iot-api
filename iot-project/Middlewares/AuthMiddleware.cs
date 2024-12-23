@@ -1,15 +1,18 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using iot_project.Helpers;
+using Microsoft.Extensions.Logging;
 
 namespace iot_project.Middlewares
 {
     public class AuthMiddleware
     {
         private readonly RequestDelegate _next;
+        private readonly ILogger<AuthMiddleware> _logger;
 
-        public AuthMiddleware(RequestDelegate next)
+        public AuthMiddleware(RequestDelegate next, ILogger<AuthMiddleware> logger)
         {
             _next = next;
+            _logger = logger;
         }
 
         public async Task InvokeAsync(HttpContext context)
@@ -20,7 +23,12 @@ namespace iot_project.Middlewares
                 await _next(context);
                 return;
             }
-            var token = context.Request.Headers["token"].FirstOrDefault();
+            var token = context.Request.Headers["Authorization"].FirstOrDefault();
+            _logger.LogInformation(token);
+            if (token != null && token.StartsWith("Bearer "))
+            {
+                token = token.Substring("Bearer ".Length);
+            }
             if (token == null)
             {
                 context.Response.StatusCode = StatusCodes.Status401Unauthorized;

@@ -1,4 +1,6 @@
-﻿namespace iot_project.Transformer
+﻿using iot_project.Models;
+
+namespace iot_project.Transformer
 {
     public class CheckCardHistoryTransformer
     {
@@ -6,11 +8,11 @@
         public string idCard { get; set; }
         public string openAt { get; set; }
 
-        public CheckCardHistoryTransformer(string fullName, string idCard, string openAt)
+        public CheckCardHistoryTransformer(CheckCardHistory history)
         {
-            this.fullName = fullName;
-            this.idCard = idCard;
-            this.openAt = openAt;
+            this.fullName = history.fullName ?? "";
+            this.idCard = history.idCard;
+            this.openAt = history.time.ToString("HH:mm:ss dd-MM-yyyy");
         }
     }
 }

@@ -41,16 +41,13 @@ namespace iot_project.Helpers
         {
             _client.DisconnectedAsync += async e =>
             {
-                Console.WriteLine($"Disconnected from MQTT broker: {e.Reason}");
                 await Task.Delay(TimeSpan.FromSeconds(5));
-
                 try
                 {
                     await ConnectAsync();
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Reconnection failed: {ex.Message}");
                 }
             };
 
@@ -73,7 +70,6 @@ namespace iot_project.Helpers
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Error processing message: {ex.Message}");
                 }
             };
         }
@@ -85,12 +81,10 @@ namespace iot_project.Helpers
                 if (!_client.IsConnected)
                 {
                     await _client.ConnectAsync(_options, cancellationToken);
-                    Console.WriteLine("Connected to MQTT broker successfully");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Connection failed: {ex.Message}");
                 throw;
             }
         }

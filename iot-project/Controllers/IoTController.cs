@@ -47,7 +47,7 @@ namespace iot_project.Controllers
             _cache.Set(cacheKey, cacheData, cacheOptions);
             _mqttService.PublishAsync(MqttTopic.SERVER, "register");
             return Ok(new {
-                message = "Vui quẹt thẻ để đăng kí"
+                message = "Success"
             });
         }
 
@@ -55,23 +55,18 @@ namespace iot_project.Controllers
         public IActionResult history()
         {
             List<CheckCardHistory> histories = _checkCardHistoryRepository.listOpen();
-            string[] idCards = histories.Select(history => history.idCard).ToArray();
-
-            List<IdentityCard> identityCards = _identityCardRepository.listByIdCards(idCards);
-
-            var identityCardKeyById = _identityCardRepository.keyById(identityCards);
             return Ok(new {
-                data = (new ListCheckCardHistoryTransformer()).transformFromList(histories, identityCardKeyById)
+                data = (new ListCheckCardHistoryTransformer()).transformFromList(histories)
             });
         }
 
-        [HttpPost("open-door")]
+        [HttpGet("open-door")]
         public IActionResult openDoor()
         {
             _mqttService.PublishAsync(MqttTopic.SERVER, "open");
             return Ok(new
             {
-                message = "Đã gửi yêu cầu mở cửa"
+                message = "Success"
             });
         }
     }

@@ -52,5 +52,15 @@ namespace iot_project.Data
             var dictionary = listCard.ToDictionary(card => card.idCard);
             return dictionary;
         }
+
+        public void updateIdCard(int id, IdentityCard updateCard)
+        {
+            IdentityCard card = _context.IdentityCards.FirstOrDefault(u => u.id == id);
+            card.fullName = updateCard.fullName;
+            card.birthday = updateCard.birthday;
+            card.phone = updateCard.phone;
+            _context.IdentityCards.Update(card);
+            _context.SaveChanges();
+        }
     }
 }

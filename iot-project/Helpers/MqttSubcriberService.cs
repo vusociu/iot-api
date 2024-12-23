@@ -41,7 +41,7 @@ namespace iot_project.Helpers
                        
                         if (!string.IsNullOrEmpty(message))
                         {
-                            if (message == "no card registered")
+                            if (message == "no card registered" || message== "No response from server.")
                             {
                                 _cache.Remove(cacheKey);
                             }
@@ -49,25 +49,27 @@ namespace iot_project.Helpers
                             {
                                 string idCard = message;
                                 var identityCard = identityCardRepository.getByIdCard(idCard);
-                                if (identityCard == null)
+                                if (_cache.TryGetValue<IdentityCard>(cacheKey, out var cacheData))
                                 {
-                                    if (_cache.TryGetValue<IdentityCard>(cacheKey, out var cacheData))
+                                    IdentityCard newIdentityCard = cacheData as IdentityCard;
+                                    newIdentityCard.idCard = message.ToString();
+                                    if (identityCard == null)
                                     {
-                                        IdentityCard newIdentityCard = cacheData as IdentityCard;
-                                        newIdentityCard.idCard = message.ToString();
                                         identityCardRepository.create(newIdentityCard);
-                                        _cache.Remove(cacheKey);
                                         _mqttService.PublishAsync(MqttTopic.SERVER, "register done");
                                     }
                                     else
                                     {
-                                        _mqttService.PublishAsync(MqttTopic.SERVER, "register fail");
+                                        identityCardRepository.updateIdCard(identityCard.id, newIdentityCard);
+                                        _mqttService.PublishAsync(MqttTopic.SERVER, "overwrite register");
                                     }
+                                    _cache.Remove(cacheKey);
                                 }
                                 else
                                 {
                                     _mqttService.PublishAsync(MqttTopic.SERVER, "register fail");
                                 }
+                                
                             }
                         }
                         await Task.CompletedTask;
@@ -95,6 +97,7 @@ namespace iot_project.Helpers
                                 idCard = idCard,
                                 status = status,
                                 time = DateTime.Now,
+                                fullName = identityCard?.fullName ?? ""
                             };
                             checkCardHistoryRepository.create(checkCardHistory);
                         }

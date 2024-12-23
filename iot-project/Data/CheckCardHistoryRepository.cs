@@ -20,7 +20,10 @@ namespace iot_project.Data
 
         public List<CheckCardHistory> listOpen()
         {
-            return _context.CheckCardHistories.Where(u => u.status==CheckCardStatus.EXIST).ToList();
+            return _context.CheckCardHistories
+                .Where(u => u.status==CheckCardStatus.EXIST)
+                .OrderByDescending(u => u.time)
+                .ToList();
         }
     }
 }

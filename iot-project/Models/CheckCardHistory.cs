@@ -15,5 +15,7 @@ namespace iot_project.Models
 
         [Required]
         public DateTime time { get; set; }
+
+        public string fullName { get; set; }
     }
 }

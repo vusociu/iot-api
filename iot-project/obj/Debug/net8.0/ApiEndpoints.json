@@ -29,7 +29,7 @@
     "ContainingType": "iot_project.Controllers.IoTController",
     "Method": "openDoor",
     "RelativePath": "iot/api/open-door",
-    "HttpMethod": "POST",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
