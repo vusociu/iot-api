@@ -271,5 +271,5 @@ dotnet ef database update
 
 ## 👥 Tác giả
 
-VuND
+https://github.com/vusociu
 
